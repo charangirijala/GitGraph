@@ -1,0 +1,15 @@
+<template>
+  <lightning-card variant="base">
+    <div>
+      <div class="content-to-convert">
+        <h1>This content will be converted to PNG</h1>
+        <p>Some sample text here.</p>
+      </div>
+      <lightning-button
+        label="Convert to PNG"
+        onclick={handleConvertToPng}
+      ></lightning-button>
+      <div class="image-container"></div>
+    </div>
+  </lightning-card>
+</template>

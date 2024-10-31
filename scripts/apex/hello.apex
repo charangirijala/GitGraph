@@ -93,7 +93,7 @@ public static types.GitHubApiJson getContributions(
   return result;
 }
 
-// getGithubUser('rajeshThappeta');
+getGithubUser('rajeshThappeta');
 getContributions('charangirijala', 2024);
 
 types.GitHubApiJson test = new types.GitHubApiJson();

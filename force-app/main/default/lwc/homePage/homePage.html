@@ -1,0 +1,37 @@
+<template>
+  <h1>GitGraph</h1>
+  <div class="slds-form-element">
+    <label class="slds-form-element__label" for="form-element-01"
+      >Enter Github Username</label
+    >
+    <div class="slds-form-element__control">
+      <input type="text" oninput={onUserNameInput} class="slds-input" />
+    </div>
+  </div>
+  <lightning-button
+    variant="neutral"
+    label="Search"
+    onclick={getUser}
+    disabled={buttonStatus}
+  ></lightning-button>
+  <h1>{userName}</h1>
+  <span class="slds-avatar slds-avatar_circle slds-avatar_large">
+    <img src={avatarUrl} alt={userName} />
+  </span>
+
+  <lightning-combobox
+    name="Contribution Years"
+    label="Year"
+    value=""
+    placeholder="Select a year"
+    options={options}
+    onchange={handleYearChange}
+  ></lightning-combobox>
+  <lightning-button
+    value={selectedYear}
+    variant="neutral"
+    onclick={generateGraph}
+    label="Generate Graph"
+  ></lightning-button>
+  <c-contributions-graph></c-contributions-graph>
+</template>

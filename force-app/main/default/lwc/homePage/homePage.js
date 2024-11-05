@@ -5,7 +5,9 @@ import getContributions from "@salesforce/apex/GitHubRestController.getContribut
 export default class HomePage extends LightningElement {
   selectedYear = new Date().getFullYear();
   userName;
+  fullName;
   avatarUrl;
+  userGitLink;
   contributionYears = [];
   buttonStatus = false;
   onUserNameInput(event) {
@@ -21,6 +23,8 @@ export default class HomePage extends LightningElement {
         if (!content.errors) {
           this.avatarUrl = content.data.user.avatarUrl;
           this.userName = content.data.user.login;
+          this.fullName = content.data.user.name;
+          this.userGitLink = "https://github.com/" + this.userName;
           this.contributionYears =
             content.data.user.contributionsCollection.years;
         } else {
@@ -31,14 +35,12 @@ export default class HomePage extends LightningElement {
         console.log("Error fetching user details: ", err);
       });
   }
-  generateGraph() {
-    this.template
-      .querySelector("c-contributions-graph")
-      .callApexForContributions(this.userName, this.selectedYear);
-  }
 
   handleYearChange(event) {
     this.selectedYear = event.detail.value;
+    this.template
+      .querySelector("c-contributions-graph")
+      .callApexForContributions(this.userName, this.selectedYear);
     // console.log("HandleYearChange: ", this.selectedYear);
   }
   get options() {

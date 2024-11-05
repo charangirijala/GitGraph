@@ -1,37 +1,54 @@
 <template>
-  <h1>GitGraph</h1>
-  <div class="slds-form-element">
-    <label class="slds-form-element__label" for="form-element-01"
-      >Enter Github Username</label
-    >
-    <div class="slds-form-element__control">
-      <input type="text" oninput={onUserNameInput} class="slds-input" />
+  <div class="slds-container_medium mx-auto">
+    <div class="wrapper-input slds-var-m-bottom_small">
+      <div class="input">
+        <input
+          type="text"
+          placeholder="Enter a username.."
+          oninput={onUserNameInput}
+          class="slds-input"
+        />
+      </div>
+      <div class="search-btn">
+        <button
+          class="text-center btn btn-primary ml-2"
+          onclick={getUser}
+          disabled={buttonStatus}
+        >
+          Search
+        </button>
+      </div>
     </div>
-  </div>
-  <lightning-button
-    variant="neutral"
-    label="Search"
-    onclick={getUser}
-    disabled={buttonStatus}
-  ></lightning-button>
-  <h1>{userName}</h1>
-  <span class="slds-avatar slds-avatar_circle slds-avatar_large">
-    <img src={avatarUrl} alt={userName} />
-  </span>
+    <div class="wrapper-user-details">
+      <div class="avatar">
+        <span class="slds-avatar slds-avatar_circle slds-avatar_large">
+          <img src={avatarUrl} alt={userName} />
+        </span>
+      </div>
+      <div class="user-details slds-var-m-left_small">
+        <div class="full-name">{fullName}</div>
+        <div class="user-name">
+          <a href={userGitLink}>{userName}</a>
+        </div>
+      </div>
+      <div class="contribution-years slds-var-m-left_small">
+        <lightning-combobox
+          name="Contribution Years"
+          variant="label-hidden"
+          value={selectedYear}
+          placeholder="Select a year"
+          options={options}
+          onchange={handleYearChange}
+        ></lightning-combobox>
+      </div>
+    </div>
 
-  <lightning-combobox
-    name="Contribution Years"
-    label="Year"
-    value=""
-    placeholder="Select a year"
-    options={options}
-    onchange={handleYearChange}
-  ></lightning-combobox>
-  <lightning-button
-    value={selectedYear}
-    variant="neutral"
-    onclick={generateGraph}
-    label="Generate Graph"
-  ></lightning-button>
-  <c-contributions-graph></c-contributions-graph>
+    <!-- <lightning-button
+      value={selectedYear}
+      variant="neutral"
+      onclick={generateGraph}
+      label="Generate Graph"
+    ></lightning-button> -->
+    <c-contributions-graph></c-contributions-graph>
+  </div>
 </template>

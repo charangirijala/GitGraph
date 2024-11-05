@@ -1,5 +1,7 @@
 import { api, LightningElement, track } from "lwc";
 import getContributions from "@salesforce/apex/GitHubRestController.getContributions";
+import DOMTOIMAGE from "@salesforce/resourceUrl/domtoimage";
+import { loadScript } from "lightning/platformResourceLoader";
 
 class ContributionDay {
   count;
@@ -66,6 +68,7 @@ class ContributionWeeks {
 export default class ContributionsGraph extends LightningElement {
   totalContributions;
   selectedTheme = "default";
+
   get themes() {
     return [
       { label: "Default", value: "default" },
@@ -75,10 +78,21 @@ export default class ContributionsGraph extends LightningElement {
   }
   currentYear;
   contributionsCalendar;
+  domtoimageLoaded = false;
   @track contributionWeeks = new ContributionWeeks();
 
   renderedCallback() {
     console.log("Rendered callbck called()");
+    if (!this.domtoimageLoaded) {
+      this.domtoimageLoaded = true;
+      Promise.all([loadScript(this, DOMTOIMAGE)])
+        .then(() => {
+          console.log("Dom to Image loaded", domtoimage);
+        })
+        .catch((err) => {
+          console.log("Dom to Image not loaded", err);
+        });
+    }
   }
   get sun() {
     return this.contributionWeeks.sun;
@@ -127,7 +141,7 @@ export default class ContributionsGraph extends LightningElement {
 
   processContributionData() {
     console.log("processContributionData running");
-    this.firstCall === false;
+    this.firstCall = false;
     this.totalContributions = this.contributionsCalendar.total;
     const weeks = this.contributionsCalendar.weeks;
     let sun = [];
@@ -259,5 +273,23 @@ export default class ContributionsGraph extends LightningElement {
     console.log("Thu: ", JSON.stringify(thu));
     console.log("Fri: ", JSON.stringify(fri));
     console.log("Sat: ", JSON.stringify(sat));
+  }
+
+  handleConvertToPng() {
+    console.log("handleConvertToPng clicked");
+    const element = this.template.querySelector(
+      ".graph-before-activity-overview"
+    );
+    domtoimage
+      .toPng(element)
+      .then((dataUrl) => {
+        const img = new Image();
+        img.src = dataUrl;
+        console.log("Image created: ", img);
+        this.template.querySelector(".image-container").appendChild(img);
+      })
+      .catch((error) => {
+        console.error("oops, something went wrong!", error);
+      });
   }
 }

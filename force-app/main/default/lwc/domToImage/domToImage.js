@@ -21,8 +21,16 @@ export default class DomToImage extends LightningElement {
   handleConvertToPng() {
     console.log("handleConvertToPng clicked");
     const element = this.template.querySelector(".content-to-convert");
+    var scale = 2;
     domtoimage
-      .toPng(element)
+      .toBlob(element, {
+        width: element.clientWidth * scale,
+        height: element.clientHeight * scale,
+        style: {
+          transform: "scale(" + scale + ")",
+          transformOrigin: "top left"
+        }
+      })
       .then((dataUrl) => {
         const img = new Image();
         img.src = dataUrl;

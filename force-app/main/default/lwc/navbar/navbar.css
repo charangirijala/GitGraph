@@ -1,0 +1,58 @@
+:host {
+  --fgColor-default: #f0f6fc;
+  --bgColor-muted: #9198a1;
+  --base-size-16: 1rem;
+  --base-size-8: 0.5rem;
+  --base-text-weight-semibold: 600;
+  --control-medium-paddingInline-condensed: 0.5rem;
+}
+.title {
+  align-content: center;
+}
+.title a {
+  text-decoration: none;
+  font-weight: var(--base-text-weight-semibold);
+  color: var(--fgColor-default);
+}
+
+.AppHeader {
+  color: var(--fgColor-default);
+  padding: var(--base-size-16, var(--base-size-16));
+  padding-bottom: var(--base-size-8);
+  display: flex;
+}
+
+/* .AppHeader
+  .AppHeader-globalBar
+  .AppHeader-context
+  .AppHeader-context-item */
+.AppHeader-context-item-label {
+  display: inline-block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  padding-inline: var(
+    --control-medium-paddingInline-condensed,
+    var(--base-size-8)
+  );
+  padding-block: var(--control-medium-paddingBlock, 6px);
+}
+.muted {
+  color: var(--bgColor-muted);
+  font-weight: 400;
+}
+
+.octicon {
+  display: inline-block;
+  overflow: visible !important;
+  vertical-align: text-bottom;
+  fill: currentColor;
+}
+.color-fg-default,
+.fgColor-default {
+  color: var(--fgColor-default) !important;
+}
+
+.full-wrapper {
+  background-color: #151b23;
+}

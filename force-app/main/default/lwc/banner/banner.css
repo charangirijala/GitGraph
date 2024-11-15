@@ -1,0 +1,65 @@
+:host {
+  --headingReveal-staggerDelay: 0.1s;
+  --brand-text-letterSpacing-900: -0.03em;
+  --brand-text-lineHeight-1000: 1.05;
+  --brand-text-lineHeight-900: 1.05;
+  --brand-heading-weight-900: 900;
+  --brand-text-size-1000: 4rem;
+  --brand-text-size-900: 3rem;
+  --brand-text-size-800: 2.25rem;
+  --brand-text-size-700: 2.25rem;
+  --brand-text-size-600: 2rem;
+  --brand-heading-lineHeight-1000: 1.05;
+  --brand-heading-lineHeight-900: 1.05;
+  --brand-color-text-default: #ffffff;
+  --brand-heading-letterSpacing-900: -0.03em;
+  --brand-fontStack-sansSerif: "Mona Sans", "MonaSansFallback", -apple-system,
+    BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif,
+    "Apple Color Emoji", "Segoe UI Emoji";
+}
+.Primer_Brand__CTABanner-module__CTABanner-content--center___S0ChQ {
+  align-items: center;
+  text-align: center;
+}
+
+.Primer_Brand__CTABanner-module__CTABanner-content___sZo6_ {
+  display: flex;
+  flex-direction: column;
+  gap: var(--base-size-16);
+  align-items: flex-start;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.Primer_Brand__Heading-module__Heading___IVpmp {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.Primer_Brand__Heading-module__Heading--1___Ufc7G {
+  font-weight: var(--brand-heading-weight-900);
+  font-size: var(--brand-text-size-900);
+  line-height: var(--brand-text-lineHeight-900);
+  letter-spacing: var(--brand-text-letterSpacing-900);
+}
+.Primer_Brand__Heading-module__Heading-font--mona-sans___SCnTx {
+  font-family: var(--brand-fontStack-sansSerif);
+}
+.Primer_Brand__Heading-module__Heading___IVpmp {
+  --condensed-stretch: 75%;
+  color: var(--brand-color-text-default);
+}
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+figure,
+blockquote,
+dl,
+dd {
+  margin: 0;
+}

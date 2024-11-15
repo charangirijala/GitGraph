@@ -1,5 +1,6 @@
 <template>
   <div class="slds-container_medium mx-auto">
+    <c-banner></c-banner>
     <div class="wrapper-input slds-var-m-bottom_small">
       <div class="input">
         <input
@@ -19,36 +20,37 @@
         </button>
       </div>
     </div>
-    <div class="wrapper-user-details">
-      <div class="avatar">
-        <span class="slds-avatar slds-avatar_circle slds-avatar_large">
-          <img src={avatarUrl} alt={userName} />
-        </span>
-      </div>
-      <div class="user-details slds-var-m-left_small">
-        <div class="full-name">{fullName}</div>
-        <div class="user-name">
-          <a href={userGitLink}>{userName}</a>
+    <template lwc:if={displayUserDetails}>
+      <div class="wrapper-user-details">
+        <div class="avatar">
+          <span class="slds-avatar slds-avatar_circle slds-avatar_large">
+            <img src={avatarUrl} alt={userName} />
+          </span>
+        </div>
+        <div class="user-details slds-var-m-left_small">
+          <div class="full-name">{fullName}</div>
+          <div class="user-name">
+            <a href={userGitLink}>{userName}</a>
+          </div>
+        </div>
+        <div class="contribution-years slds-var-m-left_small">
+          <lightning-combobox
+            name="Contribution Years"
+            variant="label-hidden"
+            value={selectedYear}
+            placeholder="Select a year"
+            options={options}
+            onchange={handleYearChange}
+          ></lightning-combobox>
         </div>
       </div>
-      <div class="contribution-years slds-var-m-left_small">
-        <lightning-combobox
-          name="Contribution Years"
-          variant="label-hidden"
-          value={selectedYear}
-          placeholder="Select a year"
-          options={options}
-          onchange={handleYearChange}
-        ></lightning-combobox>
-      </div>
-    </div>
-
+      <c-contributions-graph></c-contributions-graph>
+    </template>
     <!-- <lightning-button
       value={selectedYear}
       variant="neutral"
       onclick={generateGraph}
       label="Generate Graph"
     ></lightning-button> -->
-    <c-contributions-graph></c-contributions-graph>
   </div>
 </template>

@@ -4,6 +4,7 @@ import getContributions from "@salesforce/apex/GitHubRestController.getContribut
 
 export default class HomePage extends LightningElement {
   selectedYear = new Date().getFullYear();
+  displayUserDetails = false;
   userName;
   fullName;
   avatarUrl;
@@ -15,6 +16,7 @@ export default class HomePage extends LightningElement {
     this.userName = temp.trim();
     this.buttonStatus = this.userName === "" ? true : false;
     console.log("Name Entered :" + this.userName);
+    this.displayUserDetails = false;
   }
   getUser() {
     getGithubUser({ username: this.userName })
@@ -27,6 +29,7 @@ export default class HomePage extends LightningElement {
           this.userGitLink = "https://github.com/" + this.userName;
           this.contributionYears =
             content.data.user.contributionsCollection.years;
+          this.displayUserDetails = true;
         } else {
           console.log("error: ", JSON.stringify(content.errors));
         }

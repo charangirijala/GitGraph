@@ -283,10 +283,11 @@ export default class ContributionsGraph extends LightningElement {
     domtoimage
       .toPng(element)
       .then((dataUrl) => {
-        const img = new Image();
-        img.src = dataUrl;
-        console.log("Image created: ", img);
-        this.template.querySelector(".image-container").appendChild(img);
+        var link = this.template.querySelector("a");
+        link.setAttribute("download", "contributionGraph.png");
+        link.setAttribute("href", dataUrl);
+        link.click();
+        console.log("handleConvertToPng link created successfully!");
       })
       .catch((error) => {
         console.error("oops, something went wrong!", error);

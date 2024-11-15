@@ -52,6 +52,32 @@
   --color-project-gradient-in: #161b22;
   --color-project-gradient-out: rgba(22, 27, 34, 0);
   --color-diff-blob-selected-line-highlight-mix-blend-mode: screen;
+  --base-size-8: 8px;
+  --base-size-16: 16px;
+  --base-text-weight-medium: 500;
+  --button-default-fgColor-rest: #f0f6fc;
+  --button-default-bgColor-hover: #262c36;
+  --button-primary-fgColor-rest: #ffffff;
+  --button-primary-fgColor-disabled: #ffffff66;
+  --button-primary-iconColor-rest: #ffffff;
+  --button-primary-bgColor-rest: #238636;
+  --button-primary-bgColor-hover: #29903b;
+  --button-primary-bgColor-active: #2e9a40;
+  --button-primary-bgColor-disabled: #105823;
+  --button-primary-borderColor-rest: #ffffff1a;
+  --button-primary-borderColor-hover: #ffffff1a;
+  --button-primary-borderColor-active: #ffffff1a;
+  --button-primary-shadow-selected: 0px 0px 0px 0px #000000;
+  --button-default-bgColor-rest: #212830;
+  --button-default-bgColor-hover: #262c36;
+  --button-default-bgColor-active: #2a313c;
+  --button-default-bgColor-selected: #2a313c;
+  --button-default-bgColor-disabled: #212830;
+  --button-default-borderColor-rest: #3d444d;
+  --button-default-borderColor-hover: #3d444d;
+  --button-default-borderColor-active: #3d444d;
+  --shadow-resting-small: 0px 1px 0px 0px #01040966;
+  --button-default-shadow-resting: 0px 0px 0px 0px #000000;
   box-sizing: border-box;
   background-color: var(--bgColor-black);
 }
@@ -282,4 +308,61 @@ table {
   clip-path: rect(0 0 0 0);
   overflow-wrap: normal;
   border: 0;
+}
+
+.btn-container {
+  text-align: end;
+}
+
+.ml-2 {
+  margin-left: var(--base-size-8) !important;
+}
+.btn-primary:hover,
+.btn-primary.hover,
+[open] > .btn-primary {
+  background-color: var(--button-primary-bgColor-hover);
+  border-color: var(--button-primary-borderColor-hover);
+}
+.btn-primary:active,
+.btn-primary.selected,
+.btn-primary[aria-selected="true"] {
+  background-color: var(--button-primary-bgColor-active);
+  box-shadow: var(--button-primary-shadow-selected);
+}
+
+.btn:active {
+  background-color: var(--button-default-bgColor-active);
+  border-color: var(--button-default-borderColor-active);
+  transition: none;
+}
+.btn-primary {
+  color: var(--button-primary-fgColor-rest);
+  background-color: var(--button-primary-bgColor-rest);
+  border-color: var(--button-primary-borderColor-rest);
+  box-shadow: var(--shadow-resting-small);
+}
+.btn {
+  color: var(--button-default-fgColor-rest);
+  box-shadow: var(--button-default-shadow-resting);
+  transition: 80ms cubic-bezier(0.33, 1, 0.68, 1);
+  transition-property: color, background-color, box-shadow, border-color;
+}
+.mx-auto {
+  margin-left: auto;
+  margin-right: auto;
+}
+.btn {
+  position: relative;
+  display: inline-block;
+  padding: 5px var(--base-size-16);
+  font-size: 14px;
+  font-weight: var(--base-text-weight-medium);
+  line-height: 20px;
+  white-space: nowrap;
+  vertical-align: middle;
+  cursor: pointer;
+  -webkit-user-select: none;
+  user-select: none;
+  border-radius: 6px;
+  appearance: none;
 }
